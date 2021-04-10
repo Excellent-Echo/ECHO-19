@@ -8,6 +8,7 @@ Sun = Moon = styled.svg`
   top: 2rem;
   right: 4rem;
   transition: all .5s linear;
+  cursor:pointer;
 `;
 
 function Button({ theme, buttonTheme }) {

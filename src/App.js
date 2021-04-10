@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Content from './components/Content';
+import useDarkMode from './styles/useDarkMode';
+import Button from './components/Button'
+import { GlobalStyles, darkTheme, lightTheme } from './styles/globalStyle'
+import styled, { ThemeProvider } from 'styled-components';
+
+
+const Container = styled.div`
+max-widht:50%;
+margin: 17em 25em ;
+`;
 
 function App() {
+  const [theme, buttonTheme] = useDarkMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={themeMode}>
+
+      <Container>
+        <GlobalStyles />
+        <Button theme={theme} buttonTheme={buttonTheme} />
+        <Content />
+      </Container>
+
+    </ThemeProvider>
   );
 }
 
