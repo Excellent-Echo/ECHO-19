@@ -1,8 +1,8 @@
 import React from 'react';
 import Content from './Content';
-import useDarkMode from '../styles/useDarkMode';
+import useDarkMode from '../../styles/useDarkMode';
 import Button from './Button'
-import { GlobalStyles, darkTheme, lightTheme } from '../styles/globalStyle'
+import { GlobalStyles, darkTheme, lightTheme } from '../../styles/globalStyle'
 import styled, { ThemeProvider } from 'styled-components';
 
 

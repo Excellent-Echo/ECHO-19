@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Home from "./components/Home";
-import Search from "./components/Search"
-import Setting from "./components/Setting";
+import Home from "./components/Home/Home";
+import DetailCountry from "./components/Search/DetailCountry";
+import Search from "./components/Search/Search"
+import Setting from "./components/Setting/Setting";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
               </Route>
               <Route path="/setting">
                 <Setting />
+              </Route>
+              <Route path="/detail">
+                <DetailCountry />
               </Route>
               <Route path="/" exact={true}>
                 <Home />

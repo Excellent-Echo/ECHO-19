@@ -1,8 +1,10 @@
-const initState = {};
+const initState = [];
 
 const covidReducer = (state = initState, action) => {
   switch (action.type) {
-    case "SET_COUNTRY":
+    case "SEARCH_COUNTRY":
+      return action.payload.country;
+    case "SHOW_DETAIL":
       return {
         country: action.payload.country,
         confirmed: action.payload.confirmed,

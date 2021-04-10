@@ -1,25 +1,43 @@
 import axios from "../../APIs/covid";
 import React, { useEffect } from "react";
 
-
-const setCountry = () => async (dispatch) => {
-  const inputKeyword = document.querySelector('.input-keyword');
-
+const fetchCountryList = () => async (dispatch) => {
   try {
-    const covidData = await axios({
+    const countryList = await axios({
+      method: "GET",
+      url: `/cases`,
+    });
+    
+    dispatch({
+      type: "SEARCH_COUNTRY",
+      payload: {
+        country: Object.keys(countryList.data),
+      }
+    });
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const fetchDetailCases = () => async (dispatch) => {
+  const inputKeyword = document.querySelector('.input-keyword');
+  
+  try {
+    const detailCases = await axios({
       method: "GET",
       url: `/cases?country=` + inputKeyword.value,
     });
     
     dispatch({
-      type: "SET_COUNTRY",
+      type: "SHOW_DETAIL",
       payload: {
-        country: covidData.data.All.country,
-        confirmed: covidData.data.All.confirmed,
-        deaths: covidData.data.All.deaths,
-        recovered: covidData.data.All.recovered,
-        updated: covidData.data.All.updated,
-        countryCode: covidData.data.All.abbreviation,
+        country: detailCases.data.All.country,
+        confirmed: detailCases.data.All.confirmed,
+        deaths: detailCases.data.All.deaths,
+        recovered: detailCases.data.All.recovered,
+        updated: detailCases.data.All.updated,
+        countryCode: detailCases.data.All.abbreviation,
       }
     });
 
@@ -31,7 +49,8 @@ const setCountry = () => async (dispatch) => {
 
 
 const covidAction = {
-  setCountry,
+  fetchCountryList,
+  fetchDetailCases,
 };
 
 export default covidAction;
