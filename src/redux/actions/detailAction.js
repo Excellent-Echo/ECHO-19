@@ -27,6 +27,7 @@ const fetchDetailCases = () => async (dispatch) => {
         updated: detailCountry.updated,
         flag: detailCountry.countryInfo.flag,
         code: detailCountry.countryInfo.iso2,
+        population: detailCountry.population,
       }
     });
 

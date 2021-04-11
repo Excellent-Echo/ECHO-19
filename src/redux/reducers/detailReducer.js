@@ -16,6 +16,7 @@ const detailReducer = (state = initState, action) => {
         updated: action.payload.updated,
         flag: action.payload.flag,
         code: action.payload.code,
+        population: action.payload.population,
       }
     default:
       return state;
