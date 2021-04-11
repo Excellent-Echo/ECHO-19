@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
 import detailAction from "../../redux/actions/detailAction";
 import { GlobalStyles } from "../../styles/globalStyle";
 

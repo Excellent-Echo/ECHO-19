@@ -5,11 +5,9 @@ import { useHistory } from "react-router-dom";
 import covidAction from "../../redux/actions/covidAction";
 import detailAction from "../../redux/actions/detailAction";
 
-import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
 import DetailCountry from "./DetailCountry";
 import { GlobalStyles } from "../../styles/globalStyle";
-import globe from "../../assets/globe.png";
+import globe from "../../assets/planet-earth.png";
 
 const Search = () => {
   const covidData = useSelector((state) => state.covid);
