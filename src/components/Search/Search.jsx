@@ -3,12 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import covidAction from "../../redux/actions/covidAction";
+import detailAction from "../../redux/actions/detailAction";
+
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import DetailCountry from "./DetailCountry";
 
 const Search = () => {
   const covidData = useSelector((state) => state.covid);
+  const detail = useSelector((state) => state.detail);
   const dispatch = useDispatch();
   const history = useHistory();
   const [btnClicked, setBtnClicked] = useState(false);
@@ -21,7 +24,7 @@ const Search = () => {
     e.preventDefault();
     setBtnClicked(true);
     history.push("/detail");
-    dispatch(covidAction.fetchDetailCases());
+    dispatch(detailAction.fetchDetailCases());
   }
 
   return (
