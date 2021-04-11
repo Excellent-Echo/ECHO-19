@@ -4,9 +4,7 @@ import styled from 'styled-components'
 let Sun, Moon;
 
 Sun = Moon = styled.svg`
-  position: absolute;
-  top: 2rem;
-  right: 4rem;
+    
   transition: all .5s linear;
   cursor:pointer;
 `;
