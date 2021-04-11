@@ -13,10 +13,6 @@ const fetchCountryList = () => async (dispatch) => {
         list: countryList.data.map(({ country }) => country),
       }
     });
-    console.log(countryList.data)
-
-    const countryState = JSON.stringify(countryList.data);
-    localStorage.setItem('country', countryState);
 
   } catch (error) {
     console.log(error);

@@ -1,25 +1,23 @@
 const initState = [];
 
-const detailReducer = (state = initState, action) => {
+const globalReducer = (state = initState, action) => {
   switch (action.type) {
-    case "SHOW_DETAIL":
+    case "SHOW_GLOBAL":
       return {
         loaded: true,
-        country: action.payload.country,
+        affectedCountries: action.payload.affectedCountries,
         cases: action.payload.cases,
         casesPerM: action.payload.casesPerM,
         active: action.payload.active,
         critical: action.payload.critical,
+        recovered: action.payload.recovered,
         deaths: action.payload.deaths,
         deathsPerM: action.payload.deathsPerM,
-        recovered: action.payload.recovered,
         updated: action.payload.updated,
-        flag: action.payload.flag,
-        code: action.payload.code,
       }
     default:
       return state;
   }
 }
 
-export default detailReducer;
+export default globalReducer;

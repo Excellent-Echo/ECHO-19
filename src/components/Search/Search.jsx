@@ -25,8 +25,9 @@ const Search = () => {
   const search = (e) => {
     e.preventDefault();
     setBtnClicked(true);
-    history.push("/detail");
     dispatch(detailAction.fetchDetailCases());
+
+    history.push(`/detail/${detail.code}`);
   }
 
   return (

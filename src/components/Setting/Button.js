@@ -12,7 +12,6 @@ Sun = Moon = styled.svg`
 `;
 
 function Button({ theme, buttonTheme }) {
-    console.log(theme);
 
     return (
         <div onClick={buttonTheme}>

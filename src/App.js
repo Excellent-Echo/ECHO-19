@@ -21,7 +21,7 @@ function App() {
       <Button theme={theme} buttonTheme={buttonTheme} />
       <GlobalStyles/>
         <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav className="navbar navbar-expand-lg navbar-light">
               <div>
                 <Link to="/">ECHO-19</Link>
               </div>
@@ -36,7 +36,7 @@ function App() {
               <Route path="/search">
                 <Search />
               </Route>
-              <Route path="/detail">
+              <Route path="/detail/:code">
                 <DetailCountry />
               </Route>
               <Route path="/" exact={true}>
