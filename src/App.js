@@ -4,31 +4,37 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./components/Home/Home";
 import DetailCountry from "./components/Search/DetailCountry";
 import Search from "./components/Search/Search"
-import Setting from "./components/Setting/Setting";
+
+//Theme dark-light
+import styled, { ThemeProvider } from 'styled-components';
+import { GlobalStyles, darkTheme, lightTheme } from './styles/globalStyle'
+import useDarkMode from './styles/useDarkMode';
+import Button from "./components/Setting/Button";
 
 function App() {
+  const [theme, buttonTheme] = useDarkMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
   return (
     <>
+    <ThemeProvider theme={themeMode}>
       <Router>
+      <Button theme={theme} buttonTheme={buttonTheme} />
+      <GlobalStyles/>
         <header>
-          <nav>
+        <nav class="navbar navbar-expand-lg navbar-light">
               <div>
-                <Link to="/">Home</Link>
+                <Link to="/">ECHO-19</Link>
               </div>
               <div>
                 <Link to="/search">Search</Link>
               </div>
-              <div>
-                <Link to="/setting">Setting</Link>
-              </div>
           </nav>
+             
+          
           <div>
             <Switch>
               <Route path="/search">
                 <Search />
-              </Route>
-              <Route path="/setting">
-                <Setting />
               </Route>
               <Route path="/detail">
                 <DetailCountry />
@@ -40,6 +46,8 @@ function App() {
           </div>
         </header>
       </Router>
+    </ThemeProvider>
+
     </>
   );
 }
