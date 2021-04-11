@@ -5,11 +5,12 @@ const detailReducer = (state = initState, action) => {
     case "SHOW_DETAIL":
       return {
         country: action.payload.country,
-        confirmed: action.payload.confirmed,
+        cases: action.payload.cases,
+        active: action.payload.active,
         deaths: action.payload.deaths,
         recovered: action.payload.recovered,
         updated: action.payload.updated,
-        flag: '"../../assets/flags/' + action.payload.countryCode.toLowerCase() + '.svg"',
+        flag: action.payload.flag,
       }
     default:
       return state;

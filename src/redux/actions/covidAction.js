@@ -4,16 +4,20 @@ const fetchCountryList = () => async (dispatch) => {
   try {
     const countryList = await axios({
       method: "GET",
-      url: `/cases`,
+      url: `/countries`,
     });
-    
+
     dispatch({
       type: "SEARCH_COUNTRY",
       payload: {
-        country: Object.keys(countryList.data),
+        list: countryList.data.map(({ country }) => country),
       }
     });
-    
+    console.log(countryList.data)
+
+    const countryState = JSON.stringify(countryList.data);
+    localStorage.setItem('country', countryState);
+
   } catch (error) {
     console.log(error);
   }

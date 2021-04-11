@@ -2,22 +2,26 @@ import axios from "../../APIs/covid";
 
 const fetchDetailCases = () => async (dispatch) => {
   const inputKeyword = document.querySelector('.input-keyword');
-  
+  const countryName = inputKeyword.value;
+
   try {
     const detailCases = await axios({
       method: "GET",
-      url: `/cases?country=` + inputKeyword.value,
+      url: `/countries`,
     });
+
+    let detailCountry = detailCases.data.find(id => id.country === countryName);
     
     dispatch({
       type: "SHOW_DETAIL",
       payload: {
-        country: detailCases.data.All.country,
-        confirmed: detailCases.data.All.confirmed,
-        deaths: detailCases.data.All.deaths,
-        recovered: detailCases.data.All.recovered,
-        updated: detailCases.data.All.updated,
-        countryCode: detailCases.data.All.abbreviation,
+        country: detailCountry.country,
+        cases: detailCountry.cases,
+        active: detailCountry.active,
+        deaths: detailCountry.deaths,
+        recovered: detailCountry.recovered,
+        updated: detailCountry.updated,
+        flag: detailCountry.countryInfo.flag,
       }
     });
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Axios = axios.create({
-  baseURL: "https://covid-api.mmediagroup.fr/v1"
+  baseURL: "https://corona.lmao.ninja/v2"
 });
 
 export default Axios;

@@ -18,6 +18,8 @@ const Search = () => {
 
   useEffect(() => {
     dispatch(covidAction.fetchCountryList());
+    // const countryState = JSON.stringify(detail);
+    // localStorage.setItem('country', countryState);
   }, []);
 
   const search = (e) => {

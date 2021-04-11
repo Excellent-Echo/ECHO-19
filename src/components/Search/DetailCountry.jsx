@@ -8,11 +8,10 @@ import detailAction from "../../redux/actions/detailAction";
 const DetailCountry = () => {
   const detail = useSelector((state) => state.detail);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
-    const countryState = JSON.stringify(detail);
-    localStorage.setItem('country', countryState);
-  });
+    // JSON.parse(localStorage.getItem('country'));
+  }, []);
 
   // useEffect(() => {
   //   const countryState = JSON.stringify(detail);
@@ -24,7 +23,7 @@ const DetailCountry = () => {
     <>
       <div className="container">
         <div className="col-sm">
-          <img src={detail.flag} alt="flags" width="36" />
+          <img src={detail.flag} alt="flag" width="100" />
         </div>
         <div className="col-sm">
           <h1>{detail.country}</h1>
@@ -32,13 +31,13 @@ const DetailCountry = () => {
         <div className="card w-50">
           <div className="card-body">
             <h5 className="card-title">Total Cases</h5>
-            <p className="card-text">{detail.confirmed}</p>
+            <p className="card-text">{detail.cases}</p>
           </div>
         </div>
         <div className="card w-50">
           <div className="card-body">
             <h5 className="card-title">Active Cases</h5>
-            <p className="card-text">{detail.confirmed - detail.recovered - detail.deaths}</p>
+            <p className="card-text">{detail.active}</p>
           </div>
         </div>
         <div className="card w-50">
