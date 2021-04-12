@@ -26,11 +26,13 @@ const Search = () => {
     history.push("/detail");
   }
 
+
+
   return (
     <>
       <GlobalStyles />
       <div className="content-wrap">
-        <div className="container mt-4">
+        <div className="container mt-5">
           <div>
             <div className="text-center">
               <div className="display-3 font-weight-black">
@@ -53,7 +55,7 @@ const Search = () => {
             </div>
             <div className="text-center grey mt-5">
               <img src={globe} aria-hidden="true" className="v-icon notranslate fas fa-globe-americas theme--dark grey--text" style={{ width: "100px" }} />
-              <div className="headline mt-6" style={{ marginTop: "24px", fontSize: "1.5rem", fontWeight: "400" }}>Search for a country</div>
+              <div className="headline mt-6" style={{ marginTop: "24px",marginBottom:'10em  ', fontSize: "1.5rem", fontWeight: "400" }}>Search for a country</div>
             </div>
           </div>
         </div>
