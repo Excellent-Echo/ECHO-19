@@ -84,22 +84,22 @@ const Home = () => {
                 <div className="display-2 font-weight-black text-uppercase" style={{ fontSize: "4rem", fontWeight: "900", lineHeight: "3.125rem" }}>
                   GLOBAL
               </div>
-                <div class="title error--text mt-4" style={{ fontSize: "1.5rem", letterSpacing: "0.125rem" }}>
+                <div className="title error--text mt-4" style={{ fontSize: "1.5rem", letterSpacing: "0.125rem" }}>
                   Affected countries: {globalData.affectedCountries}
                 </div>
               </div>
               <div className="row mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
-                    <CardChild1 class="card-title d-flex justify-space-between">
+                    <CardChild1 className="card-title d-flex justify-space-between">
                       Total cases
                     </CardChild1>
-                    <CardSub1 class="card-subtitle pb-2">
-                      <CardSub2 class="text-headline pb-1">
+                    <CardSub1 className="card-subtitle pb-2">
+                      <CardSub2 className="text-headline pb-1">
                         {globalData.cases.toLocaleString()}
                       </CardSub2>
-                      <CardSub3 class="v-card__subtitle pt-0">
-                        <span class="error-text">
+                      <CardSub3 className="v-card__subtitle pt-0">
+                        <span className="error-text">
                           {globalData.casesPerM.toLocaleString()} per million
                          </span>
                       </CardSub3>
@@ -108,15 +108,15 @@ const Home = () => {
                 </Card>
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
-                    <CardChild1 class="card-title d-flex justify-space-between">
+                    <CardChild1 className="card-title d-flex justify-space-between">
                       Active cases
                     </CardChild1>
-                    <CardSub1 class="card-subtitle pb-2">
-                      <CardSub2 class="text-headline pb-1">
+                    <CardSub1 className="card-subtitle pb-2">
+                      <CardSub2 className="text-headline pb-1">
                         {globalData.active.toLocaleString()}
                       </CardSub2>
-                      <CardSub3 class="v-card__subtitle pt-0">
-                        <span class="error-text">
+                      <CardSub3 className="v-card__subtitle pt-0">
+                        <span className="error-text">
                           {globalData.critical.toLocaleString()} in critical condition
                         </span>
                       </CardSub3>
@@ -125,15 +125,15 @@ const Home = () => {
                 </Card>
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
-                    <CardChild1 class="card-title d-flex justify-space-between">
+                    <CardChild1 className="card-title d-flex justify-space-between">
                       Recovered
                     </CardChild1>
-                    <CardSub1 class="card-subtitle pb-2">
-                      <CardSub2 class="text-headline pb-1">
+                    <CardSub1 className="card-subtitle pb-2">
+                      <CardSub2 className="text-headline pb-1">
                         {globalData.recovered.toLocaleString()}
                       </CardSub2>
-                      <CardSub3 class="v-card__subtitle pt-0">
-                        <span class="error-text">
+                      <CardSub3 className="v-card__subtitle pt-0">
+                        <span className="error-text">
                           {Math.round(globalData.recovered / globalData.cases * 100)}% recovered                        </span>
                       </CardSub3>
                     </CardSub1>
@@ -141,14 +141,14 @@ const Home = () => {
                 </Card>
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
-                    <CardChild1 class="card-title d-flex justify-space-between">
+                    <CardChild1 className="card-title d-flex justify-space-between">
                       Deaths
                     </CardChild1>
-                    <CardSub1 class="card-subtitle pb-2">
-                      <CardSub2 class="text-headline pb-1">
+                    <CardSub1 className="card-subtitle pb-2">
+                      <CardSub2 className="text-headline pb-1">
                         {globalData.deaths.toLocaleString()}                    </CardSub2>
-                      <CardSub3 class="v-card__subtitle pt-0">
-                        <span class="error-text">
+                      <CardSub3 className="v-card__subtitle pt-0">
+                        <span className="error-text">
                           {globalData.deathsPerM.toLocaleString()} per million                    </span>
                       </CardSub3>
                     </CardSub1>
