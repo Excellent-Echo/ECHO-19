@@ -13,7 +13,8 @@ const Footer = () => {
     flex-shrink: 1 !important;
     flex-basis: auto !important;
     flex-wrap: wrap;
-    position: relative;
+    position: absolute;
+    width: 100%;
   `;
 
   const Footer2 = styled.div`
