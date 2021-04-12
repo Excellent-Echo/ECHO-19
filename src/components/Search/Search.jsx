@@ -18,13 +18,12 @@ const Search = () => {
 
   useEffect(() => {
     dispatch(covidAction.fetchCountryList());
-    // const countryState = JSON.stringify(detail);
-    // localStorage.setItem('country', countryState);
   }, []);
 
   const search = (e) => {
     e.preventDefault();
     setBtnClicked(true);
+
     dispatch(detailAction.fetchDetailCases());
 
     history.push("/detail");
@@ -63,12 +62,11 @@ const Search = () => {
               <img
                 src={globe}
                 aria-hidden="true"
-                class="v-icon notranslate fas fa-globe-americas theme--dark grey--text"
-                alt="flag-image"
+                className="v-icon notranslate fas fa-globe-americas theme--dark grey--text"
                 style={{ width: "100px" }}
               />
               <div
-                class="headline mt-6"
+                className="headline mt-6"
                 style={{
                   marginTop: "24px",
                   fontSize: "1.5rem",

@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const Footer = () => {
   const Footer1 = styled.footer`
-    bottom: 0px;
     background-color: #f5f5f5;
     color: rgba(0, 0, 0, 0.87);
     align-items: center;
@@ -15,11 +14,10 @@ const Footer = () => {
     flex-wrap: wrap;
     position: absolute;
     width: 100%;
+    bottom: 0;
   `;
 
   const Footer2 = styled.div`
-    flex-grow: 0;
-    flex-shrink: 0;
     flex-basis: 100%;
     max-width: 100%;
     width: 100%;

@@ -2,24 +2,32 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/rootReducer";
 
-// function loadLocalStorage() {
-//   try {
-//     const countryState = localStorage.getItem('country')
-//     if (countryState === null) {
-//       return undefined;
-//     }
-//   } catch (e) {
-//     console.log(e)
-//     return undefined
-//   }
-// }
+function saveToLocalStorage(state) {
+  try {
+    const serialisedState = JSON.stringify(state);
+    localStorage.setItem("persistantState", serialisedState);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
-// const persistedState = loadLocalStorage();
+function loadFromLocalStorage() {
+  try {
+    const serialisedState = localStorage.getItem("persistantState");
+    if (serialisedState === null) return undefined;
+    return JSON.parse(serialisedState);
+  } catch (e) {
+    console.warn(e);
+    return undefined;
+  }
+}
 
 const store = createStore(
-  combineReducers(rootReducer), 
-  // persistedState,
+  combineReducers(rootReducer),
+  loadFromLocalStorage(),
   applyMiddleware(thunk)
-  );
+);
+
+store.subscribe(() => saveToLocalStorage(store.getState()));
 
 export default store;

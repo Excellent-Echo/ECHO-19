@@ -67,8 +67,8 @@ function App() {
             </div>
           </header>
         </Router>
-      </ThemeProvider>
       <Footer />
+      </ThemeProvider>
     </>
   );
 }
