@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     font-family: 'Roboto', sans-serif;
     transition: all .5s linear;
+    position: relative;
   }
   p {
     line-height: 2rem;

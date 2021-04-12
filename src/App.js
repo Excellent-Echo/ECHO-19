@@ -27,7 +27,7 @@ function App() {
     cursor: pointer;
     background-color: transparent;
   `;
-  
+
   return (
     <>
       <ThemeProvider theme={themeMode}>
@@ -66,8 +66,8 @@ function App() {
               </Switch>
             </div>
           </header>
+          <Footer />
         </Router>
-      <Footer />
       </ThemeProvider>
     </>
   );

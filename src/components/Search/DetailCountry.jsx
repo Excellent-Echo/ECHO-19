@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { GlobalStyles } from "../../styles/globalStyle";
 
@@ -10,6 +10,9 @@ const DetailCountry = () => {
   useEffect(() => {
     detail.loaded = true;
   }, []);
+
+  let diff = Math.abs(new Date(detail.updated) - new Date());
+  const minutes = Math.floor(diff / 1000 / 60);
 
   const Avatar = styled.div`
     height: 70px;
@@ -22,7 +25,6 @@ const DetailCountry = () => {
     display: inline-flex;
     -webkit-box-pack: center;
     justify-content: center;
-    position: relative;
     text-align: center;
     vertical-align: middle;
     overflow: hidden;
@@ -50,7 +52,6 @@ const DetailCountry = () => {
     text-decoration: none;
     transition-property: box-shadow,opacity,-webkit-box-shadow;
     overflow-wrap: break-word;
-    position: relative;
     white-space: normal;
     transition: box-shadow .28s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1);
     will-change: box-shadow;
@@ -176,6 +177,14 @@ const DetailCountry = () => {
                     </CardSub1>
                   </CardChild>
                 </Card>
+              </div>
+            </div>
+            <div className="text-center mt-4 mb-8" style={{ marginBottom: "32px", marginTop: "16px", }}>
+              <div className="primary-text mb-1" style={{ color: "#2196f3", caretColor: "#2196f3", marginBottom: "4px", fontSize: "20px" }}>
+                Last updated {minutes} minutes ago
+                  <div style={{ color: "#9e9e9e" }}>
+                  {new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'full' }).format(detail.updated)}
+                </div>
               </div>
             </div>
           </div>
