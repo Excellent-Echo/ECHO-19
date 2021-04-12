@@ -31,16 +31,6 @@ const fetchDetailCases = () => async (dispatch) => {
       }
     });
 
-    let detailArray = localStorage.getItem('country')
-      ? JSON.parse(localStorage.getItem('country'))
-      : []
-
-    localStorage.setItem('country', JSON.stringify(detailArray))
-    const detail = JSON.parse(localStorage.getItem('country'))
-
-    detailArray.push({ country: detailCountry.country, code: detailCountry.countryInfo.iso2 })
-    localStorage.setItem('country', JSON.stringify(detailArray))
-
   } catch (error) {
     console.log(error);
   }

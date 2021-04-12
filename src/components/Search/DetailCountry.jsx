@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import detailAction from "../../redux/actions/detailAction";
 import { GlobalStyles } from "../../styles/globalStyle";
 
 const DetailCountry = () => {
   let detail = useSelector((state) => state.detail);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(detailAction.fetchDetailCases());
     detail.loaded = true;
   }, []);
 
@@ -107,22 +104,22 @@ const DetailCountry = () => {
                   </Avatar>
                   {detail.country}
                 </div>
-                <div class="title grey--text font-weight-bold text-uppercase mt-4 mb-4" style={{ fontSize: "2rem" }}>
+                <div className="title grey--text font-weight-bold text-uppercase mt-4 mb-4" style={{ fontSize: "2rem" }}>
                   POPULATION: {detail.population.toLocaleString()}
                 </div>
               </div>
               <div className="row mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
-                    <CardChild1 class="card-title d-flex justify-space-between">
+                    <CardChild1 className="card-title d-flex justify-space-between">
                       Total cases
                 </CardChild1>
-                    <CardSub1 class="card-subtitle pb-2">
-                      <CardSub2 class="text-headline pb-1">
+                    <CardSub1 className="card-subtitle pb-2">
+                      <CardSub2 className="text-headline pb-1">
                         {detail.cases.toLocaleString()}
                       </CardSub2>
-                      <CardSub3 class="v-card__subtitle pt-0">
-                        <span class="error-text">
+                      <CardSub3 className="v-card__subtitle pt-0">
+                        <span className="error-text">
                           {detail.casesPerM.toLocaleString()} per million
                     </span>
                       </CardSub3>
@@ -131,15 +128,15 @@ const DetailCountry = () => {
                 </Card>
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
-                    <CardChild1 class="card-title d-flex justify-space-between">
+                    <CardChild1 className="card-title d-flex justify-space-between">
                       Active cases
                 </CardChild1>
-                    <CardSub1 class="card-subtitle pb-2">
-                      <CardSub2 class="text-headline pb-1">
+                    <CardSub1 className="card-subtitle pb-2">
+                      <CardSub2 className="text-headline pb-1">
                         {detail.active.toLocaleString()}
                       </CardSub2>
-                      <CardSub3 class="v-card__subtitle pt-0">
-                        <span class="error-text">
+                      <CardSub3 className="v-card__subtitle pt-0">
+                        <span className="error-text">
                           {detail.critical.toLocaleString()} in critical condition
                     </span>
                       </CardSub3>
@@ -148,15 +145,15 @@ const DetailCountry = () => {
                 </Card>
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
-                    <CardChild1 class="card-title d-flex justify-space-between">
+                    <CardChild1 className="card-title d-flex justify-space-between">
                       Recovered
                 </CardChild1>
-                    <CardSub1 class="card-subtitle pb-2">
-                      <CardSub2 class="text-headline pb-1">
+                    <CardSub1 className="card-subtitle pb-2">
+                      <CardSub2 className="text-headline pb-1">
                         {detail.recovered.toLocaleString()}
                       </CardSub2>
-                      <CardSub3 class="v-card__subtitle pt-0">
-                        <span class="error-text">
+                      <CardSub3 className="v-card__subtitle pt-0">
+                        <span className="error-text">
                           {Math.round(detail.recovered / detail.cases * 100)}% recovered                    </span>
                       </CardSub3>
                     </CardSub1>
@@ -164,15 +161,15 @@ const DetailCountry = () => {
                 </Card>
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
-                    <CardChild1 class="card-title d-flex justify-space-between">
+                    <CardChild1 className="card-title d-flex justify-space-between">
                       Deaths
                 </CardChild1>
-                    <CardSub1 class="card-subtitle pb-2">
-                      <CardSub2 class="text-headline pb-1">
+                    <CardSub1 className="card-subtitle pb-2">
+                      <CardSub2 className="text-headline pb-1">
                         {detail.deaths.toLocaleString()}
                       </CardSub2>
-                      <CardSub3 class="v-card__subtitle pt-0">
-                        <span class="error-text">
+                      <CardSub3 className="v-card__subtitle pt-0">
+                        <span className="error-text">
                           {detail.deathsPerM.toLocaleString()} per million
                     </span>
                       </CardSub3>

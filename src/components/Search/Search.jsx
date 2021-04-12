@@ -18,13 +18,12 @@ const Search = () => {
 
   useEffect(() => {
     dispatch(covidAction.fetchCountryList());
-    // const countryState = JSON.stringify(detail);
-    // localStorage.setItem('country', countryState);
   }, []);
 
   const search = (e) => {
     e.preventDefault();
     setBtnClicked(true);
+    
     dispatch(detailAction.fetchDetailCases());
 
     history.push("/detail");
@@ -56,8 +55,8 @@ const Search = () => {
               </form>
             </div>
             <div className="text-center grey mt-5">
-              <img src={globe} aria-hidden="true" class="v-icon notranslate fas fa-globe-americas theme--dark grey--text" style={{ width: "100px" }} />
-              <div class="headline mt-6" style={{ marginTop: "24px", fontSize: "1.5rem", fontWeight: "400"}}>Search for a country</div>
+              <img src={globe} aria-hidden="true" className="v-icon notranslate fas fa-globe-americas theme--dark grey--text" style={{ width: "100px" }} />
+              <div className="headline mt-6" style={{ marginTop: "24px", fontSize: "1.5rem", fontWeight: "400"}}>Search for a country</div>
             </div>
           </div>
         </div>
