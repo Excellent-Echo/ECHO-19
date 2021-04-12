@@ -28,7 +28,7 @@ const Search = () => {
     dispatch(detailAction.fetchDetailCases());
 
     history.push("/detail");
-  }
+  };
 
   return (
     <>
@@ -37,36 +37,53 @@ const Search = () => {
         <div className="container mt-4">
           <div>
             <div className="text-center">
-              <div className="display-3 font-weight-black">
-                SEARCH
-              </div>
+              <div className="display-3 font-weight-black">SEARCH</div>
             </div>
             <div>
               <form onSubmit={search}>
                 {!btnClicked && (
                   <div className="mb-3 mt-5">
-                    <input list="country" type="text" className="input form-control input-keyword" placeholder="Search country" />
+                    <input
+                      list="country"
+                      type="text"
+                      className="input form-control input-keyword"
+                      placeholder="Search country"
+                    />
                     <datalist id="country">
-                      {covidData && covidData.map((country, index) => {
-                        return <option key={index} value={country} />
-                      })}
+                      {covidData &&
+                        covidData.map((country, index) => {
+                          return <option key={index} value={country} />;
+                        })}
                     </datalist>
                   </div>
                 )}
               </form>
             </div>
             <div className="text-center grey mt-5">
-              <img src={globe} aria-hidden="true" class="v-icon notranslate fas fa-globe-americas theme--dark grey--text" style={{ width: "100px" }} />
-              <div class="headline mt-6" style={{ marginTop: "24px", fontSize: "1.5rem", fontWeight: "400"}}>Search for a country</div>
+              <img
+                src={globe}
+                aria-hidden="true"
+                class="v-icon notranslate fas fa-globe-americas theme--dark grey--text"
+                alt="flag-image"
+                style={{ width: "100px" }}
+              />
+              <div
+                class="headline mt-6"
+                style={{
+                  marginTop: "24px",
+                  fontSize: "1.5rem",
+                  fontWeight: "400",
+                }}
+              >
+                Search for a country
+              </div>
             </div>
           </div>
         </div>
       </div>
-      {btnClicked && (
-        <DetailCountry />
-      )}
+      {btnClicked && <DetailCountry />}
     </>
-  )
-}
+  );
+};
 
 export default Search;

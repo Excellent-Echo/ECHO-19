@@ -32,13 +32,13 @@ const DetailCountry = () => {
   `;
 
   const Card = styled.div`
-  margin-top: 25px;
-  @media (max-width: 768px) {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
+    margin-top: 25px;
+    @media (max-width: 768px) {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
   `;
 
   const CardChild = styled.div`
@@ -51,13 +51,15 @@ const DetailCountry = () => {
     max-width: 100%;
     outline: none;
     text-decoration: none;
-    transition-property: box-shadow,opacity,-webkit-box-shadow;
+    transition-property: box-shadow, opacity, -webkit-box-shadow;
     overflow-wrap: break-word;
     position: relative;
     white-space: normal;
-    transition: box-shadow .28s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1);
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+      -webkit-box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: box-shadow;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   `;
 
   const CardChild1 = styled.div`
@@ -67,23 +69,23 @@ const DetailCountry = () => {
     flex-wrap: wrap;
     font-size: 2rem;
     font-weight: 500;
-    letter-spacing: .0125em;
+    letter-spacing: 0.0125em;
     line-height: 2rem;
     word-break: break-all;
     padding: 16px;
   `;
 
   const CardSub1 = styled.div`
-  margin-top: -16px;
-  padding: 16px;
+    margin-top: -16px;
+    padding: 16px;
   `;
 
   const CardSub2 = styled.div`
-    padding-bottom: 4px!important;
+    padding-bottom: 4px !important;
     line-height: 2rem;
-    font-size: 1.75rem!important;
+    font-size: 1.75rem !important;
     font-weight: 400;
-    letter-spacing: normal!important;
+    letter-spacing: normal !important;
     width: 100%;
   `;
 
@@ -101,22 +103,42 @@ const DetailCountry = () => {
           <div className="container mt-5">
             <div>
               <div className="text-center">
-                <div className="display-2 font-weight-black text-uppercase" style={{ fontSize: "4rem", fontWeight: "900", lineHeight: "3.125rem" }}>
+                <div
+                  className="display-2 font-weight-black text-uppercase"
+                  style={{
+                    fontSize: "4rem",
+                    fontWeight: "900",
+                    lineHeight: "3.125rem",
+                  }}
+                >
                   <Avatar className="avatar mb-2 mr-4">
                     <img src={detail.flag} />
                   </Avatar>
                   {detail.country}
                 </div>
-                <div class="title grey--text font-weight-bold text-uppercase mt-4 mb-4" style={{ fontSize: "2rem" }}>
+                <div
+                  class="title grey--text font-weight-bold text-uppercase mt-4 mb-4"
+                  style={{ fontSize: "2rem" }}
+                >
                   POPULATION: {detail.population.toLocaleString()}
                 </div>
               </div>
-              <div className="row mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
+              <div
+                className="row mt-3 d-flex flex-wrap"
+                style={{
+                  marginTop: "12px",
+                  flexGrow: "1",
+                  flexShrink: "1",
+                  flexBasis: "auto",
+                  marginRight: "-12px",
+                  marginLeft: "-12px",
+                }}
+              >
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
                     <CardChild1 class="card-title d-flex justify-space-between">
                       Total cases
-                </CardChild1>
+                    </CardChild1>
                     <CardSub1 class="card-subtitle pb-2">
                       <CardSub2 class="text-headline pb-1">
                         {detail.cases.toLocaleString()}
@@ -124,7 +146,7 @@ const DetailCountry = () => {
                       <CardSub3 class="v-card__subtitle pt-0">
                         <span class="error-text">
                           {detail.casesPerM.toLocaleString()} per million
-                    </span>
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -133,15 +155,16 @@ const DetailCountry = () => {
                   <CardChild className="card sheet theme-dark">
                     <CardChild1 class="card-title d-flex justify-space-between">
                       Active cases
-                </CardChild1>
+                    </CardChild1>
                     <CardSub1 class="card-subtitle pb-2">
                       <CardSub2 class="text-headline pb-1">
                         {detail.active.toLocaleString()}
                       </CardSub2>
                       <CardSub3 class="v-card__subtitle pt-0">
                         <span class="error-text">
-                          {detail.critical.toLocaleString()} in critical condition
-                    </span>
+                          {detail.critical.toLocaleString()} in critical
+                          condition
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -150,14 +173,16 @@ const DetailCountry = () => {
                   <CardChild className="card sheet theme-dark">
                     <CardChild1 class="card-title d-flex justify-space-between">
                       Recovered
-                </CardChild1>
+                    </CardChild1>
                     <CardSub1 class="card-subtitle pb-2">
                       <CardSub2 class="text-headline pb-1">
                         {detail.recovered.toLocaleString()}
                       </CardSub2>
                       <CardSub3 class="v-card__subtitle pt-0">
                         <span class="error-text">
-                          {Math.round(detail.recovered / detail.cases * 100)}% recovered                    </span>
+                          {Math.round((detail.recovered / detail.cases) * 100)}%
+                          recovered{" "}
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -166,7 +191,7 @@ const DetailCountry = () => {
                   <CardChild className="card sheet theme-dark">
                     <CardChild1 class="card-title d-flex justify-space-between">
                       Deaths
-                </CardChild1>
+                    </CardChild1>
                     <CardSub1 class="card-subtitle pb-2">
                       <CardSub2 class="text-headline pb-1">
                         {detail.deaths.toLocaleString()}
@@ -174,7 +199,7 @@ const DetailCountry = () => {
                       <CardSub3 class="v-card__subtitle pt-0">
                         <span class="error-text">
                           {detail.deathsPerM.toLocaleString()} per million
-                    </span>
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -185,7 +210,7 @@ const DetailCountry = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
 export default DetailCountry;

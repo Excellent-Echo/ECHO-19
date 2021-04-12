@@ -22,7 +22,7 @@ const MostAffected = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default MostAffected;
