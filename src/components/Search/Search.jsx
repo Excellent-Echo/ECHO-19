@@ -54,7 +54,7 @@ const Search = () => {
               </form>
             </div>
             <div className="text-center grey mt-5">
-              <img src={globe} aria-hidden="true" className="v-icon notranslate fas fa-globe-americas theme--dark grey--text" style={{ width: "100px" }} />
+              <img src={globe} aria-hidden="true" className="v-icon notranslate fas fa-globe-americas theme--dark grey--text" style={{ width: "100px" }} alt="Flag Country/>
               <div className="headline mt-6" style={{ marginTop: "24px", fontSize: "1.5rem", fontWeight: "400" }}>Search for a country</div>
             </div>
           </div>
