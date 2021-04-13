@@ -18,8 +18,12 @@ const Home = () => {
     dispatch(mostAffAction.fetchMostAffected());
   }, []);
 
-  let diff = Math.abs(new Date(globalData.updated) - new Date());
-  const minutes = Math.floor(diff / 1000 / 60);
+  function minutes() {
+    let diff = Math.abs(new Date(globalData.updated) - new Date());
+    const minutes = Math.floor(diff / 1000 / 60);
+    return minutes;
+  }
+  
 
   const Card = styled.div`
     margin-top: 25px;
@@ -238,7 +242,7 @@ const Home = () => {
                     fontSize: "20px",
                   }}
                 >
-                  Last updated {minutes} minutes ago
+                  Last updated {minutes()} minutes ago
                   <div style={{ color: "#9e9e9e" }}>
                     {new Intl.DateTimeFormat("en-GB", {
                       dateStyle: "full",
