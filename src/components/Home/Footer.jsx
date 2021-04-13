@@ -2,6 +2,8 @@ import React from "react";
 
 import styled from "styled-components";
 
+// import { Container, Navbar } from 'react-bootstrap'
+
 const Footer = () => {
 
   const Footer1 = styled.footer`
@@ -20,17 +22,14 @@ const Footer = () => {
 
   return (
     <>
-      <Footer1 className="footer font-weight-medium" data-booted="true" style={{ fontWeight: "500"}}>
-        <Footer2 className="text-center col col-12">
+      <div className="container-fluid fixed-bottom" style={{ backgroundColor: "#343a40", padding: "10px", textAlign: "center" }}>
           2021 - &nbsp;
           <strong>
             Developed by &nbsp;
             <a href="https://github.com/Excellent-Echo/ECHO-19">Echo-19</a>
           </strong>
-        </Footer2>
-      </Footer1>
+      </div>
     </>
   )
 }
-
 export default Footer;
