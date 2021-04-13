@@ -14,6 +14,7 @@ const DetailCountry = () => {
   function minutes() {
     let diff = Math.abs(new Date(detail.updated) - new Date());
     const minutes = Math.floor(diff / 1000 / 60);
+    return minutes;
   }
 
   const Avatar = styled.div`
