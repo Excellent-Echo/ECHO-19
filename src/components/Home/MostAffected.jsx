@@ -96,7 +96,7 @@ const MostAffected = () => {
               <CardChild1 className="card-title justify-space-between" style={{ fontSize: "1.5rem" }}>
                 <div className="mb-1 d-flex justify-content-between">
                   {data.country}
-                  <div class="avatar mb-1" >
+                  <div className="avatar mb-1" >
                     <Avatar1 src={data.countryInfo.flag} />
                   </div>
                 </div>

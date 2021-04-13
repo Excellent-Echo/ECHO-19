@@ -10,7 +10,7 @@ const fetchCountryList = () => async (dispatch) => {
     dispatch({
       type: "SEARCH_COUNTRY",
       payload: {
-        list: countryList.data.map(({ country }) => country),
+        list: countryList.data,
       }
     });
 

@@ -1,35 +1,31 @@
 import axios from "../../APIs/covid";
 
-const fetchDetailCases = () => async (dispatch) => {
-  const inputKeyword = document.querySelector('.input-keyword');
-  const countryName = inputKeyword.value;
-
+const fetchDetailCases = (code) => async (dispatch) => {
   try {
     const detailCases = await axios({
       method: "GET",
-      url: `/countries`,
+      url: `/countries/` + code,
     });
-
-    let detailCountry = detailCases.data.find(id => id.country === countryName);
 
     dispatch({
       type: "SHOW_DETAIL",
       payload: {
         loaded: false,
-        country: detailCountry.country,
-        cases: detailCountry.cases,
-        casesPerM: detailCountry.casesPerOneMillion,
-        active: detailCountry.active,
-        critical: detailCountry.critical,
-        deaths: detailCountry.deaths,
-        deathsPerM: detailCountry.deathsPerOneMillion,
-        recovered: detailCountry.recovered,
-        updated: detailCountry.updated,
-        flag: detailCountry.countryInfo.flag,
-        code: detailCountry.countryInfo.iso2,
-        population: detailCountry.population,
+        country: detailCases.data.country,
+        cases: detailCases.data.cases,
+        casesPerM: detailCases.data.casesPerOneMillion,
+        active: detailCases.data.active,
+        critical: detailCases.data.critical,
+        deaths: detailCases.data.deaths,
+        deathsPerM: detailCases.data.deathsPerOneMillion,
+        recovered: detailCases.data.recovered,
+        updated: detailCases.data.updated,
+        flag: detailCases.data.countryInfo.flag,
+        code: detailCases.data.countryInfo.iso2,
+        population: detailCases.data.population,
       }
     });
+    console.log(detailCases);
 
   } catch (error) {
     console.log(error);

@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { GlobalStyles } from "../../styles/globalStyle";
+import detailAction from "../../redux/actions/detailAction";
 
-const DetailCountry = () => {
-  let detail = useSelector((state) => state.detail);
+const DetailCountry = ({ code }) => {
+  const detail = useSelector((state) => state.detail);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     detail.loaded = true;
@@ -185,7 +187,7 @@ const DetailCountry = () => {
             <div className="text-center mt-4 mb-8" style={{ marginBottom: "32px", marginTop: "16px", }}>
               <div className="primary-text mb-1" style={{ color: "#2196f3", caretColor: "#2196f3", marginBottom: "4px", fontSize: "20px" }}>
                 Last updated {minutes()} minutes ago
-                  <div style={{ color: "#9e9e9e"}}>
+                  <div style={{ color: "#9e9e9e" }}>
                   {new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'full' }).format(detail.updated)}
                 </div>
               </div>
