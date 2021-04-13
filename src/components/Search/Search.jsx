@@ -42,13 +42,22 @@ const Search = () => {
             <div>
               <form onSubmit={search}>
                 {!btnClicked && (
-                  <div className="mb-3 mt-5">
-                    <input list="country" type="text" className="input form-control input-keyword" placeholder="Search country" />
-                    <datalist id="country">
-                      {covidData && covidData.map((country, index) => {
-                        return <option key={index} value={country} />
-                      })}
-                    </datalist>
+                  <div className="container mb-3 mt-5">
+                    <div className="row justify-content-center">
+                      <div className="col-md-6">
+                        <div className="input-group">
+                          <input list="country" type="text" className="input form-control form-control-lg input-keyword" placeholder="Search country" />
+                          <datalist id="country">
+                            {covidData && covidData.map((country, index) => {
+                              return <option key={index} value={country} />
+                            })}
+                          </datalist>
+                          <button type="submit" className="btn btn-primary btn-lg">
+                              Search
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </form>
