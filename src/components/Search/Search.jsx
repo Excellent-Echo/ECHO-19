@@ -15,9 +15,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [btnClicked, setBtnClicked] = useState(false);
-
   const [searchCountries, setSearchCountries] = useState("");
-  const [code, setCode] = useState("");
 
   useEffect(() => {
     dispatch(covidAction.fetchCountryList());
@@ -35,18 +33,9 @@ const Search = () => {
 
   const showDetail = (countryCode) => {
     setBtnClicked(true);
-    setCode(countryCode);
-    console.log(countryCode)
-      dispatch(detailAction.fetchDetailCases(countryCode));
+    dispatch(detailAction.fetchDetailCases(countryCode));
     history.push(`/detail/${countryCode}`);
   }
-
-  // const search = (e) => {
-  //   e.preventDefault();
-  //   setBtnClicked(true);
-  //   dispatch(detailAction.fetchDetailCases());
-  //   history.push("/detail");
-  // }
 
   const Card = styled.div`
   margin-top: 25px;
@@ -182,7 +171,7 @@ const Search = () => {
         </div>
       </div>
       {btnClicked && (
-        <DetailCountry code={code} />
+        <DetailCountry />
       )}
     </>
   )

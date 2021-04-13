@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { GlobalStyles } from "../../styles/globalStyle";
-import detailAction from "../../redux/actions/detailAction";
 
-const DetailCountry = ({ code }) => {
+const DetailCountry = () => {
   const detail = useSelector((state) => state.detail);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     detail.loaded = true;
