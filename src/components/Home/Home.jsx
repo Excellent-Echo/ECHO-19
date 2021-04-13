@@ -3,6 +3,10 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import globalAction from "../../redux/actions/globalAction";
+import regionAction from "../../redux/actions/regionAction";
+import mostAffAction from "../../redux/actions/mostAffAction";
+import MostAffected from "./MostAffected";
+import Region from "./Region";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -10,7 +14,12 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(globalAction.fetchGlobalCases());
+    dispatch(regionAction.fetchRegionCases());
+    dispatch(mostAffAction.fetchMostAffected());
   }, []);
+
+  let diff  = Math.abs(new Date(globalData.updated) - new Date());
+  const minutes = Math.floor(diff/1000/60);
 
   const Card = styled.div`
     margin-top: 25px;
@@ -34,7 +43,6 @@ const Home = () => {
     text-decoration: none;
     transition-property: box-shadow, opacity, -webkit-box-shadow;
     overflow-wrap: break-word;
-    position: relative;
     white-space: normal;
     transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
       -webkit-box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
@@ -74,6 +82,22 @@ const Home = () => {
     margin-top: 5px;
     color: #ff5252 !important;
     caret-color: #ff5252 !important;
+  `;
+
+  const Separator = styled.hr`
+    margin-top: 50px;
+    border-color: rgba(0,0,0,.12);
+    display: block;
+    -webkit-box-flex: 1;
+    flex: 1 1 0px;
+    width; 100%;
+    max-width: 100%;
+    height: 0;
+    max-height: 0;
+    border: solid 2px;
+    border-width: thin 0 0 0;
+    border-style: inset;
+    border-width: 1px;
   `;
 
   return (
@@ -184,10 +208,27 @@ const Home = () => {
                   </CardChild>
                 </Card>
               </div>
+              <Separator role="separator" aria-orientation="horizontal" className="mt-6">
+              </Separator>
+              <Region />
+              <Separator role="separator" aria-orientation="horizontal" className="mt-6">
+              </Separator>
+              <MostAffected />
+              <Separator role="separator" aria-orientation="horizontal" className="mt-6">
+              </Separator>
+              <div className="text-center mt-4 mb-8" style={{ marginBottom: "32px", marginTop: "16px", }}>
+                <div className="primary-text mb-1" style={{ color: "#2196f3", caretColor: "#2196f3", marginBottom: "4px", fontSize: "20px" }}>
+                  Last updated {minutes} minutes ago
+                  <div style={{ color: "#9e9e9e" }}>
+                    {new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'full' }).format(globalData.updated)}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       )}
+
     </>
   );
 };

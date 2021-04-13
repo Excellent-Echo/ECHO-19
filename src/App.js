@@ -69,8 +69,8 @@ function App() {
               </Switch>
             </div>
           </header>
+          <Footer />
         </Router>
-        <Footer />
       </ThemeProvider>
     </>
   );

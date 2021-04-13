@@ -11,7 +11,6 @@ import globe from "../../assets/planet-earth.png";
 
 const Search = () => {
   const covidData = useSelector((state) => state.covid);
-  const detail = useSelector((state) => state.detail);
   const dispatch = useDispatch();
   const history = useHistory();
   const [btnClicked, setBtnClicked] = useState(false);
@@ -23,9 +22,7 @@ const Search = () => {
   const search = (e) => {
     e.preventDefault();
     setBtnClicked(true);
-
     dispatch(detailAction.fetchDetailCases());
-
     history.push("/detail");
   };
 
@@ -33,7 +30,7 @@ const Search = () => {
     <>
       <GlobalStyles />
       <div className="content-wrap">
-        <div className="container mt-4">
+        <div className="container mt-5">
           <div>
             <div className="text-center">
               <div className="display-3 font-weight-black">SEARCH</div>
@@ -69,6 +66,7 @@ const Search = () => {
                 className="headline mt-6"
                 style={{
                   marginTop: "24px",
+                  marginBottom: "10em  ",
                   fontSize: "1.5rem",
                   fontWeight: "400",
                 }}
