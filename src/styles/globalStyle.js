@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   body {
@@ -15,13 +15,13 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const lightTheme = {
-  body: '#fff',
-  text: '#121212',
-  primary: '#6200ee',
+  body: "#fff",
+  text: "#121212",
+  primary: "#6200ee",
 };
 
 export const darkTheme = {
-  body: '#121212',
-  text: '#ffffff',
-  primary: '#bb86fc',
+  body: "#121212",
+  text: "#ffffff",
+  primary: "#bb86fc",
 };

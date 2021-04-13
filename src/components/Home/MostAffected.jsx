@@ -117,7 +117,7 @@ const MostAffected = () => {
         })}
       </div>
     </>
-  )
-}
+  );
+};
 
 export default MostAffected;

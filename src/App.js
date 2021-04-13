@@ -1,24 +1,24 @@
 import React from "react";
-import './App.css'
+import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from "./components/Home/Home";
 import DetailCountry from "./components/Search/DetailCountry";
-import Search from "./components/Search/Search"
-import { Nav, Navbar } from 'react-bootstrap'
+import Search from "./components/Search/Search";
+import { Nav, Navbar } from "react-bootstrap";
 import globe from "./assets/globe.png";
 import loupe from "./assets/loupe.png";
 import Footer from "./components/Home/Footer";
 
 //Theme dark-light
-import styled, { ThemeProvider } from 'styled-components';
-import { GlobalStyles, darkTheme, lightTheme } from './styles/globalStyle'
-import useDarkMode from './styles/useDarkMode';
+import styled, { ThemeProvider } from "styled-components";
+import { GlobalStyles, darkTheme, lightTheme } from "./styles/globalStyle";
+import useDarkMode from "./styles/useDarkMode";
 import Button from "./components/Setting/Button";
 
 function App() {
   const [theme, buttonTheme] = useDarkMode();
-  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   const LogoNavbar = styled.img`
     margin: 5px;
@@ -36,21 +36,24 @@ function App() {
           <header>
             <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
               <div>
-                <Link to="/"><LogoNavbar src={globe} /></Link>
+                <Link to="/">
+                  <LogoNavbar src={globe} />
+                </Link>
               </div>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mx-auto">
                   <div>
-                    <Link to="/search"><LogoNavbar src={loupe} /></Link>
+                    <Link to="/search">
+                      <LogoNavbar src={loupe} />
+                    </Link>
                   </div>
                 </Nav>
-                <div >
+                <div>
                   <Button theme={theme} buttonTheme={buttonTheme} />
                 </div>
               </Navbar.Collapse>
             </Navbar>
-
 
             <div>
               <Switch>

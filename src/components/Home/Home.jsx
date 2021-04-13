@@ -18,17 +18,17 @@ const Home = () => {
     dispatch(mostAffAction.fetchMostAffected());
   }, []);
 
-  let diff  = Math.abs(new Date(globalData.updated) - new Date());
-  const minutes = Math.floor(diff/1000/60);
+  let diff = Math.abs(new Date(globalData.updated) - new Date());
+  const minutes = Math.floor(diff / 1000 / 60);
 
   const Card = styled.div`
-  margin-top: 25px;
-  @media (max-width: 768px) {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
+    margin-top: 25px;
+    @media (max-width: 768px) {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
   `;
 
   const CardChild = styled.div`
@@ -41,12 +41,14 @@ const Home = () => {
     max-width: 100%;
     outline: none;
     text-decoration: none;
-    transition-property: box-shadow,opacity,-webkit-box-shadow;
+    transition-property: box-shadow, opacity, -webkit-box-shadow;
     overflow-wrap: break-word;
     white-space: normal;
-    transition: box-shadow .28s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .28s cubic-bezier(.4,0,.2,1);
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+      -webkit-box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: box-shadow;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   `;
 
   const CardChild1 = styled.div`
@@ -56,7 +58,7 @@ const Home = () => {
     flex-wrap: wrap;
     font-size: 2rem;
     font-weight: 500;
-    letter-spacing: .0125em;
+    letter-spacing: 0.0125em;
     line-height: 2rem;
     word-break: break-all;
     padding: 16px;
@@ -68,11 +70,11 @@ const Home = () => {
   `;
 
   const CardSub2 = styled.div`
-    padding-bottom: 4px!important;
+    padding-bottom: 4px !important;
     line-height: 2rem;
-    font-size: 1.75rem!important;
+    font-size: 1.75rem !important;
     font-weight: 400;
-    letter-spacing: normal!important;
+    letter-spacing: normal !important;
     width: 100%;
   `;
 
@@ -105,14 +107,34 @@ const Home = () => {
           <div className="container mt-5">
             <div>
               <div className="text-center">
-                <div className="display-2 font-weight-black text-uppercase" style={{ fontSize: "4rem", fontWeight: "900", lineHeight: "3.125rem" }}>
+                <div
+                  className="display-2 font-weight-black text-uppercase"
+                  style={{
+                    fontSize: "4rem",
+                    fontWeight: "900",
+                    lineHeight: "3.125rem",
+                  }}
+                >
                   GLOBAL
-              </div>
-                <div className="title error--text mt-4" style={{ fontSize: "1.5rem", letterSpacing: "0.125rem" }}>
+                </div>
+                <div
+                  className="title error--text mt-4"
+                  style={{ fontSize: "1.5rem", letterSpacing: "0.125rem" }}
+                >
                   Affected countries: {globalData.affectedCountries}
                 </div>
               </div>
-              <div className="row mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
+              <div
+                className="row mt-3 d-flex flex-wrap"
+                style={{
+                  marginTop: "12px",
+                  flexGrow: "1",
+                  flexShrink: "1",
+                  flexBasis: "auto",
+                  marginRight: "-12px",
+                  marginLeft: "-12px",
+                }}
+              >
                 <Card className="col-sm-6 col-lg-3 col-12">
                   <CardChild className="card sheet theme-dark">
                     <CardChild1 className="card-title d-flex justify-space-between">
@@ -125,7 +147,7 @@ const Home = () => {
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
                           {globalData.casesPerM.toLocaleString()} per million
-                         </span>
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -141,7 +163,8 @@ const Home = () => {
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {globalData.critical.toLocaleString()} in critical condition
+                          {globalData.critical.toLocaleString()} in critical
+                          condition
                         </span>
                       </CardSub3>
                     </CardSub1>
@@ -158,7 +181,11 @@ const Home = () => {
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {Math.round(globalData.recovered / globalData.cases * 100)}% recovered                        </span>
+                          {Math.round(
+                            (globalData.recovered / globalData.cases) * 100
+                          )}
+                          % recovered{" "}
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -170,28 +197,53 @@ const Home = () => {
                     </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {globalData.deaths.toLocaleString()}                    </CardSub2>
+                        {globalData.deaths.toLocaleString()}{" "}
+                      </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {globalData.deathsPerM.toLocaleString()} per million                    </span>
+                          {globalData.deathsPerM.toLocaleString()} per million{" "}
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
                 </Card>
               </div>
-              <Separator role="separator" aria-orientation="horizontal" className="mt-6">
-              </Separator>
+              <Separator
+                role="separator"
+                aria-orientation="horizontal"
+                className="mt-6"
+              ></Separator>
               <Region />
-              <Separator role="separator" aria-orientation="horizontal" className="mt-6">
-              </Separator>
+              <Separator
+                role="separator"
+                aria-orientation="horizontal"
+                className="mt-6"
+              ></Separator>
               <MostAffected />
-              <Separator role="separator" aria-orientation="horizontal" className="mt-6">
-              </Separator>
-              <div className="text-center mt-4 mb-8" style={{ marginBottom: "32px", marginTop: "16px", }}>
-                <div className="primary-text mb-1" style={{ color: "#2196f3", caretColor: "#2196f3", marginBottom: "4px", fontSize: "20px" }}>
+              <Separator
+                role="separator"
+                aria-orientation="horizontal"
+                className="mt-6"
+              ></Separator>
+              <div
+                className="text-center mt-4 mb-8"
+                style={{ marginBottom: "32px", marginTop: "16px" }}
+              >
+                <div
+                  className="primary-text mb-1"
+                  style={{
+                    color: "#2196f3",
+                    caretColor: "#2196f3",
+                    marginBottom: "4px",
+                    fontSize: "20px",
+                  }}
+                >
                   Last updated {minutes} minutes ago
                   <div style={{ color: "#9e9e9e" }}>
-                    {new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'full' }).format(globalData.updated)}
+                    {new Intl.DateTimeFormat("en-GB", {
+                      dateStyle: "full",
+                      timeStyle: "full",
+                    }).format(globalData.updated)}
                   </div>
                 </div>
               </div>
@@ -199,9 +251,8 @@ const Home = () => {
           </div>
         </div>
       )}
-
     </>
-  )
-}
+  );
+};
 
 export default Home;
