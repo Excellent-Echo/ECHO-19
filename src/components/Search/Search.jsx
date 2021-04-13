@@ -59,6 +59,7 @@ const Search = () => {
               <img
                 src={globe}
                 aria-hidden="true"
+                alt="Flag Country"
                 className="v-icon notranslate fas fa-globe-americas theme--dark grey--text"
                 style={{ width: "100px" }}
               />
