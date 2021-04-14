@@ -8,6 +8,7 @@ import styled from "styled-components";
 import DetailCountry from "./DetailCountry";
 import { GlobalStyles } from "../../styles/globalStyle";
 import globe from "../../assets/planet-earth.png";
+import services from "./services";
 
 const Search = () => {
   const covidData = useSelector((state) => state.covid);
@@ -15,8 +16,18 @@ const Search = () => {
   const [btnClicked, setBtnClicked] = useState(false);
   const [searchCountries, setSearchCountries] = useState("");
 
+  let viewedCountry = [];
+  const [recent, setRecent] = useState(viewedCountry);
+
   useEffect(() => {
     dispatch(covidAction.fetchCountryList());
+
+    const searched = services.getSearched();
+    searched.map(country => {
+      viewedCountry.push(covidData.find(c => c.countryInfo.iso2 === country.countryCode)
+      );
+    });
+    setRecent(viewedCountry);
   }, []);
 
   const filterCountry = covidData.filter(item => {
@@ -24,6 +35,12 @@ const Search = () => {
       ? item.country.includes(searchCountries)
       : "";
   });
+
+  const clearViewedCountry = () => {
+    services.clearSearched();
+    viewedCountry = [];
+    setRecent([]);
+  }
 
   const search = (e) => {
     setSearchCountries(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1));
@@ -104,7 +121,6 @@ const Search = () => {
   overflow: hidden;
 `;
 
-
   return (
     <>
       <GlobalStyles />
@@ -134,32 +150,70 @@ const Search = () => {
                 )}
               </form>
             </div>
-            {searchCountries === "" && (
+            {!searchCountries && recent.length > 0 && (
+              <div>
+                <div className="d-flex justify-content-between">
+                  <div className="headline font-weight-black mt-2 mb-2 text-uppercase" style={{ fontSize: "1.5rem", lineHeight: "2rem" }}>
+                    Recently Searched
+                  </div>
+                  <div className="d-flex align-center">
+                    <button type="button" className="btn btn-outline-primary" onClick={clearViewedCountry}>
+                      <span>Clear</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {recent.length === 0 && searchCountries === "" && (
               <div className="text-center grey mt-5">
                 <img src={globe} aria-hidden="true" className="v-icon notranslate fas fa-globe-americas theme--dark grey--text" style={{ width: "100px" }} alt="Flag Country" />
                 <div className="headline mt-6" style={{ marginTop: "24px", fontSize: "1.5rem", fontWeight: "400" }}>Search for a country</div>
               </div>
             )}
             <div className="row mb-5 mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
+              {!searchCountries && recent.length > 0 && recent.map((list, index) => {
+                return <Card className="col-sm-6 col-lg-3 col-12 mb-5" key={index}>
+                  <Link to={`/detail/${list.countryInfo.iso2}`}>
+                    <CardChild className="card sheet theme-dark">
+                      <CardChild1 className="card-title justify-space-between" style={{ fontSize: "1.5rem" }}>
+                        <div className="mb-1 d-flex justify-content-between">
+                          {list.country}
+                          <div className="avatar mb-1" >
+                            <Avatar1 src={list.countryInfo.flag} />
+                          </div>
+                        </div>
+                      </CardChild1>
+                      <CardSub1 className="card-subtitle pb-2">
+                        Cases
+                    <CardSub2 className="text-headline pb-1">
+                          {list.cases.toLocaleString()}
+                        </CardSub2>
+                      </CardSub1>
+                    </CardChild>
+                  </Link>
+                </Card>
+              })}
+            </div>
+            <div className="row mb-5 mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
               {filterCountry && filterCountry.map((list, index) => {
                 return <Card className="col-sm-6 col-lg-3 col-12 mb-5" key={index}>
                   <Link to={`/detail/${list.countryInfo.iso2}`}>
-                  <CardChild className="card sheet theme-dark">
-                    <CardChild1 className="card-title justify-space-between" style={{ fontSize: "1.5rem" }}>
-                      <div className="mb-1 d-flex justify-content-between">
-                        {list.country}
-                        <div className="avatar mb-1" >
-                          <Avatar1 src={list.countryInfo.flag} />
+                    <CardChild className="card sheet theme-dark">
+                      <CardChild1 className="card-title justify-space-between" style={{ fontSize: "1.5rem" }}>
+                        <div className="mb-1 d-flex justify-content-between">
+                          {list.country}
+                          <div className="avatar mb-1" >
+                            <Avatar1 src={list.countryInfo.flag} />
+                          </div>
                         </div>
-                      </div>
-                    </CardChild1>
-                    <CardSub1 className="card-subtitle pb-2">
-                      Cases
+                      </CardChild1>
+                      <CardSub1 className="card-subtitle pb-2">
+                        Cases
                     <CardSub2 className="text-headline pb-1">
-                        {list.cases.toLocaleString()}
-                      </CardSub2>
-                    </CardSub1>
-                  </CardChild>
+                          {list.cases.toLocaleString()}
+                        </CardSub2>
+                      </CardSub1>
+                    </CardChild>
                   </Link>
                 </Card>
               })}

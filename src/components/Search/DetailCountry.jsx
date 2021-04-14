@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { GlobalStyles } from "../../styles/globalStyle";
 import detailAction from "../../redux/actions/detailAction";
+import services from "./services";
 
 const DetailCountry = () => {
   const detail = useSelector((state) => state.detail);
@@ -15,6 +16,8 @@ const DetailCountry = () => {
     if (countryCode && countryCode !== "") {
       dispatch(detailAction.fetchDetailCases(countryCode));
     }
+
+    services.saveSearched(countryCode);
 
     return () => {
       dispatch(detailAction.removeDetailCases());
@@ -117,7 +120,7 @@ const DetailCountry = () => {
     <>
       <GlobalStyles />
       {Object.keys(detail).length === 0 ? (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center" style={{ marginTop: "200px" }}>
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
@@ -128,7 +131,7 @@ const DetailCountry = () => {
               <div className="text-center">
                 <div className="display-2 font-weight-black text-uppercase" style={{ fontSize: "4rem", fontWeight: "900", lineHeight: "3.125rem" }}>
                   <Avatar className="avatar mb-2 mr-4">
-                    <img src={detail.flag} />
+                    <img src={detail.flag} alt="flag" />
                   </Avatar>
                   {detail.country}
                 </div>
