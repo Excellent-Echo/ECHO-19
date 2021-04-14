@@ -1,24 +1,6 @@
 import React from "react";
 
-import styled from "styled-components";
-
-// import { Container, Navbar } from 'react-bootstrap'
-
 const Footer = () => {
-
-  const Footer1 = styled.footer`
-    background-color: #f5f5f5;
-    color: rgba(0,0,0,.87);
-    align-items: center;
-    position: absolute;
-    width: 100%;
-  `;
-
-  const Footer2 = styled.div`
-    max-width: 100%;
-    width: 100%;
-    padding: 12px;
-  `;
 
   return (
     <>

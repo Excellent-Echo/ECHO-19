@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import CountUp from "react-countup";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import globalAction from "../../redux/actions/globalAction";
@@ -23,7 +23,7 @@ const Home = () => {
     const minutes = Math.floor(diff / 1000 / 60);
     return minutes;
   }
-  
+
 
   const Card = styled.div`
     margin-top: 25px;
@@ -66,6 +66,9 @@ const Home = () => {
     line-height: 2rem;
     word-break: break-all;
     padding: 16px;
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
   `;
 
   const CardSub1 = styled.div`
@@ -76,16 +79,22 @@ const Home = () => {
   const CardSub2 = styled.div`
     padding-bottom: 4px !important;
     line-height: 2rem;
-    font-size: 1.75rem !important;
+    font-size: 1.75rem;
     font-weight: 400;
     letter-spacing: normal !important;
     width: 100%;
+    @media (max-width: 480px) {
+      font-size: 1.25rem;
+    }
   `;
 
   const CardSub3 = styled.div`
     margin-top: 5px;
     color: #ff5252 !important;
     caret-color: #ff5252 !important;
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   `;
 
   const Separator = styled.hr`
@@ -146,11 +155,21 @@ const Home = () => {
                     </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {globalData.cases.toLocaleString()}
+                        <CountUp
+                          start={0}
+                          end={globalData.cases}
+                          duration={2}
+                          separator=","
+                        />
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {globalData.casesPerM.toLocaleString()} per million
+                          <CountUp
+                            start={0}
+                            end={globalData.casesPerM}
+                            duration={2}
+                            separator=","
+                          /> per million
                         </span>
                       </CardSub3>
                     </CardSub1>
@@ -163,12 +182,21 @@ const Home = () => {
                     </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {globalData.active.toLocaleString()}
+                        <CountUp
+                          start={0}
+                          end={globalData.active}
+                          duration={2}
+                          separator=","
+                        />
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {globalData.critical.toLocaleString()} in critical
-                          condition
+                          <CountUp
+                            start={0}
+                            end={globalData.critical}
+                            duration={2}
+                            separator=","
+                          /> in critical condition
                         </span>
                       </CardSub3>
                     </CardSub1>
@@ -181,14 +209,23 @@ const Home = () => {
                     </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {globalData.recovered.toLocaleString()}
+                        <CountUp
+                          start={0}
+                          end={globalData.recovered}
+                          duration={2}
+                          separator=","
+                        />
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {Math.round(
-                            (globalData.recovered / globalData.cases) * 100
-                          )}
-                          % recovered{" "}
+                          <CountUp
+                            start={0}
+                            end={Math.round(
+                              (globalData.recovered / globalData.cases) * 100
+                            )}
+                            duration={2}
+                            separator=","
+                          />% recovered
                         </span>
                       </CardSub3>
                     </CardSub1>
@@ -201,11 +238,21 @@ const Home = () => {
                     </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {globalData.deaths.toLocaleString()}{" "}
+                        <CountUp
+                          start={0}
+                          end={globalData.deaths}
+                          duration={2}
+                          separator=","
+                        />
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {globalData.deathsPerM.toLocaleString()} per million{" "}
+                          <CountUp
+                            start={0}
+                            end={globalData.deathsPerM}
+                            duration={2}
+                            separator=","
+                          /> per million
                         </span>
                       </CardSub3>
                     </CardSub1>

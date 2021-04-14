@@ -1,7 +1,9 @@
 import React from "react";
-
-import { useSelector, useDispatch } from "react-redux";
+import CountUp from "react-countup";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 
 const MostAffected = () => {
   const mostAffected = useSelector((state) => state.most);
@@ -14,6 +16,10 @@ const MostAffected = () => {
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
+  }
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
   }
   `;
 
@@ -46,6 +52,9 @@ const MostAffected = () => {
     line-height: 2rem;
     word-break: break-all;
     padding: 16px;
+    @media (max-width: 480px) {
+      font-size: 1.25rem;
+    }
   `;
 
   const CardSub1 = styled.div`
@@ -56,16 +65,22 @@ const MostAffected = () => {
   const CardSub2 = styled.div`
     padding-bottom: 4px!important;
     line-height: 2rem;
-    font-size: 1.75rem!important;
+    font-size: 1.75rem;
     font-weight: 400;
     letter-spacing: normal!important;
     width: 100%;
+    @media (max-width: 480px) {
+      font-size: 1.25rem;
+    }
   `;
 
   const CardSub3 = styled.div`
     margin-top: 5px;
     color: #ff5252 !important;
     caret-color: #ff5252 !important;
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   `;
 
   const Avatar1 = styled.img`
@@ -92,27 +107,39 @@ const MostAffected = () => {
       <div className="row mb-5 mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
         {mostAffected.loaded && mostAffected.data.map((data, index) => {
           return <Card className="col-sm-6 col-lg-3 col-12" key={index}>
-            <CardChild className="card sheet theme-dark">
-              <CardChild1 className="card-title justify-space-between" style={{ fontSize: "1.5rem" }}>
-                <div className="mb-1 d-flex justify-content-between">
-                  {data.country}
-                  <div className="avatar mb-1" >
-                    <Avatar1 src={data.countryInfo.flag} />
+            <Link to={`/detail/${data.countryInfo.iso2}`}>
+              <CardChild className="card sheet theme-dark">
+                <CardChild1 className="card-title justify-space-between" style={{ fontSize: "1.5rem" }}>
+                  <div className="mb-1 d-flex justify-content-between">
+                    {data.country}
+                    <div className="avatar mb-1" >
+                      <Avatar1 src={data.countryInfo.flag} />
+                    </div>
                   </div>
-                </div>
-              </CardChild1>
-              <CardSub1 className="card-subtitle pb-2">
-                Cases
-                      <CardSub2 className="text-headline pb-1">
-                  {data.cases.toLocaleString()}
-                </CardSub2>
-                <CardSub3 className="v-card__subtitle pt-0">
-                  <span className="error-text">
-                    {Math.round(data.cases / globalData.cases * 100)}% of world total cases
-                  </span>
-                </CardSub3>
-              </CardSub1>
-            </CardChild>
+                </CardChild1>
+                <CardSub1 className="card-subtitle pb-2">
+                  Cases
+                  <CardSub2 className="text-headline pb-1">
+                    <CountUp
+                      start={0}
+                      end={data.cases}
+                      duration={2}
+                      separator=","
+                    />
+                  </CardSub2>
+                  <CardSub3 className="v-card__subtitle pt-0">
+                    <span className="error-text">
+                      <CountUp
+                        start={0}
+                        end={Math.round(data.cases / globalData.cases * 100)}
+                        duration={2}
+                        separator=","
+                      />% of world total cases
+                    </span>
+                  </CardSub3>
+                </CardSub1>
+              </CardChild>
+            </Link>
           </Card>
         })}
       </div>

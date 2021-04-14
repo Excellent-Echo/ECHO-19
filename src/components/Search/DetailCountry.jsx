@@ -1,15 +1,25 @@
 import React, { useEffect } from "react";
-
-import { useSelector } from "react-redux";
+import CountUp from "react-countup";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { GlobalStyles } from "../../styles/globalStyle";
+import detailAction from "../../redux/actions/detailAction";
 
 const DetailCountry = () => {
   const detail = useSelector((state) => state.detail);
+  const dispatch = useDispatch();
+  const { countryCode } = useParams();
 
   useEffect(() => {
-    detail.loaded = true;
-  }, []);
+    if (countryCode && countryCode !== "") {
+      dispatch(detailAction.fetchDetailCases(countryCode));
+    }
+
+    return () => {
+      dispatch(detailAction.removeDetailCases());
+    }
+  }, [countryCode]);
 
   function minutes() {
     let diff = Math.abs(new Date(detail.updated) - new Date());
@@ -72,6 +82,9 @@ const DetailCountry = () => {
     line-height: 2rem;
     word-break: break-all;
     padding: 16px;
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
   `;
 
   const CardSub1 = styled.div`
@@ -82,22 +95,33 @@ const DetailCountry = () => {
   const CardSub2 = styled.div`
     padding-bottom: 4px!important;
     line-height: 2rem;
-    font-size: 1.75rem!important;
+    font-size: 1.75rem;
     font-weight: 400;
     letter-spacing: normal!important;
     width: 100%;
+    @media (max-width: 480px) {
+      font-size: 1.25rem;
+    }
   `;
 
   const CardSub3 = styled.div`
     margin-top: 5px;
     color: #ff5252 !important;
     caret-color: #ff5252 !important;
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   `;
 
   return (
     <>
       <GlobalStyles />
-      {detail.loaded && (
+      {Object.keys(detail).length === 0 ? (
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>) : (
         <div className="content-wrap">
           <div className="container mt-5">
             <div>
@@ -109,7 +133,13 @@ const DetailCountry = () => {
                   {detail.country}
                 </div>
                 <div className="title grey--text font-weight-bold text-uppercase mt-4 mb-4" style={{ fontSize: "2rem" }}>
-                  POPULATION: {detail.population.toLocaleString()}
+                  POPULATION:&nbsp;
+                  <CountUp
+                    start={0}
+                    end={detail.population}
+                    duration={2}
+                    separator=","
+                  />
                 </div>
               </div>
               <div className="row mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
@@ -120,12 +150,22 @@ const DetailCountry = () => {
                 </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {detail.cases.toLocaleString()}
+                        <CountUp
+                          start={0}
+                          end={detail.cases}
+                          duration={2}
+                          separator=","
+                        />
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {detail.casesPerM.toLocaleString()} per million
-                    </span>
+                          <CountUp
+                            start={0}
+                            end={detail.casesPerM}
+                            duration={2}
+                            separator=","
+                          /> per million
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -137,12 +177,22 @@ const DetailCountry = () => {
                 </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {detail.active.toLocaleString()}
+                        <CountUp
+                          start={0}
+                          end={detail.active}
+                          duration={2}
+                          separator=","
+                        />
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {detail.critical.toLocaleString()} in critical condition
-                    </span>
+                          <CountUp
+                            start={0}
+                            end={detail.critical}
+                            duration={2}
+                            separator=","
+                          /> in critical condition
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -154,11 +204,22 @@ const DetailCountry = () => {
                 </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {detail.recovered.toLocaleString()}
+                        <CountUp
+                          start={0}
+                          end={detail.recovered}
+                          duration={2}
+                          separator=","
+                        />
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {Math.round(detail.recovered / detail.cases * 100)}% recovered                    </span>
+                          <CountUp
+                            start={0}
+                            end={Math.round(detail.recovered / detail.cases * 100)}
+                            duration={2}
+                            separator=","
+                          />% recovered
+                          </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>
@@ -167,15 +228,25 @@ const DetailCountry = () => {
                   <CardChild className="card sheet theme-dark">
                     <CardChild1 className="card-title d-flex justify-space-between">
                       Deaths
-                </CardChild1>
+                    </CardChild1>
                     <CardSub1 className="card-subtitle pb-2">
                       <CardSub2 className="text-headline pb-1">
-                        {detail.deaths.toLocaleString()}
+                        <CountUp
+                          start={0}
+                          end={detail.deaths}
+                          duration={2}
+                          separator=","
+                        />
                       </CardSub2>
                       <CardSub3 className="v-card__subtitle pt-0">
                         <span className="error-text">
-                          {detail.deathsPerM.toLocaleString()} per million
-                    </span>
+                          <CountUp
+                            start={0}
+                            end={detail.deathsPerM}
+                            duration={2}
+                            separator=","
+                          /> per million
+                        </span>
                       </CardSub3>
                     </CardSub1>
                   </CardChild>

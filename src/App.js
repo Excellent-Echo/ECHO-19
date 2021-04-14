@@ -60,7 +60,7 @@ function App() {
                 <Route path="/search">
                   <Search />
                 </Route>
-                <Route path="/detail/:code">
+                <Route path="/detail/:countryCode" exact={true}>
                   <DetailCountry />
                 </Route>
                 <Route path="/" exact={true}>

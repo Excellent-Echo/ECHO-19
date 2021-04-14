@@ -18,6 +18,8 @@ const detailReducer = (state = initState, action) => {
         code: action.payload.code,
         population: action.payload.population,
       }
+    case "REMOVE_DETAIL":
+      return {};
     default:
       return state;
   }

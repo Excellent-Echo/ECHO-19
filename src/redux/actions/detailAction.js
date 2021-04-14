@@ -4,7 +4,7 @@ const fetchDetailCases = (code) => async (dispatch) => {
   try {
     const detailCases = await axios({
       method: "GET",
-      url: `/countries/` + code,
+      url: `/countries/${code}`,
     });
 
     dispatch({
@@ -25,15 +25,21 @@ const fetchDetailCases = (code) => async (dispatch) => {
         population: detailCases.data.population,
       }
     });
-    console.log(detailCases);
 
   } catch (error) {
     console.log(error);
   }
 };
 
+const removeDetailCases = () => {
+  return {
+    type: "REMOVE_DETAIL",
+  }
+};
+
 const detailAction = {
   fetchDetailCases,
+  removeDetailCases,
 };
 
 export default detailAction;

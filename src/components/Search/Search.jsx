@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import covidAction from "../../redux/actions/covidAction";
-import detailAction from "../../redux/actions/detailAction";
 import styled from "styled-components";
 
 import DetailCountry from "./DetailCountry";
@@ -13,7 +12,6 @@ import globe from "../../assets/planet-earth.png";
 const Search = () => {
   const covidData = useSelector((state) => state.covid);
   const dispatch = useDispatch();
-  const history = useHistory();
   const [btnClicked, setBtnClicked] = useState(false);
   const [searchCountries, setSearchCountries] = useState("");
 
@@ -31,12 +29,6 @@ const Search = () => {
     setSearchCountries(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1));
   };
 
-  const showDetail = (countryCode) => {
-    setBtnClicked(true);
-    dispatch(detailAction.fetchDetailCases(countryCode));
-    history.push(`/detail/${countryCode}`);
-  }
-
   const Card = styled.div`
   margin-top: 25px;
   @media (max-width: 768px) {
@@ -45,7 +37,10 @@ const Search = () => {
     flex: 0 0 50%;
     max-width: 50%;
   }
-  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  }
   `;
 
   const CardChild = styled.div`
@@ -147,7 +142,8 @@ const Search = () => {
             )}
             <div className="row mb-5 mt-3 d-flex flex-wrap" style={{ marginTop: "12px", flexGrow: "1", flexShrink: "1", flexBasis: "auto", marginRight: "-12px", marginLeft: "-12px" }}>
               {filterCountry && filterCountry.map((list, index) => {
-                return <Card className="col-sm-6 col-lg-3 col-12 mb-5" key={index} onClick={() => showDetail(list.countryInfo.iso2)}>
+                return <Card className="col-sm-6 col-lg-3 col-12 mb-5" key={index}>
+                  <Link to={`/detail/${list.countryInfo.iso2}`}>
                   <CardChild className="card sheet theme-dark">
                     <CardChild1 className="card-title justify-space-between" style={{ fontSize: "1.5rem" }}>
                       <div className="mb-1 d-flex justify-content-between">
@@ -164,6 +160,7 @@ const Search = () => {
                       </CardSub2>
                     </CardSub1>
                   </CardChild>
+                  </Link>
                 </Card>
               })}
             </div>
