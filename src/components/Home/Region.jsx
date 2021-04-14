@@ -112,7 +112,7 @@ const Region = () => {
                       end={data.critical}
                       duration={2}
                       separator=","
-                    />critical
+                    /> critical
                   </span>
                 </CardSub3>
               </CardSub1>
